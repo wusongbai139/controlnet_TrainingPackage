@@ -24,6 +24,7 @@
 
 1. 建立虚拟环境+安装依赖。
 - 这一步可以手动创建，也可以双击“setup.bat”一键安装。
+  - pytorch需要根据自己配置来安装。
 - 安装完环境依赖后，就可以直接用脚本训练模型。
   - 项目根目录下所有带“_par”后缀的.py文件都是脚本。
   - 其中“controlnet_sd15_train_par.py”是训练脚本。
@@ -102,10 +103,10 @@
 Python version 3.8 is required.
 
 
-
 1. Establish a virtual environment and install dependencies.
 
 - This step can be manually created or double clicked on "setup. bat" for one click installation.
+    - pytorch needs to be installed according to your own configuration
 
 - After installing the environment dependencies, you can directly train the model using scripts.
 
