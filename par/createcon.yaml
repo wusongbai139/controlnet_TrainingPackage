@@ -1,0 +1,2 @@
+input_model_path: H:/AIGC/lora/1/v1-5-pruned-emaonly.ckpt
+combinedOutputPath: H:/AIGC/lora/controlnet/2222.ckpt

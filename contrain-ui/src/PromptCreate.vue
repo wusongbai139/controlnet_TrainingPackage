@@ -1,0 +1,169 @@
+<template>
+  <div class="config-form-body">
+    <div class="PromptCreate">
+      <h2 class="config_title_prompt">prompt.json生成工具</h2>
+      <form @submit.prevent="handleSubmit">
+        <div class="prabox">
+          <div>
+            <div class="praen">train_data_set_path</div>
+            <div class="pracn">
+              <label for="PromptCreate">训练集文件夹（target）:</label>
+            </div>
+            <input class="input_box" id="PromptCreate" v-model="modelPaths.PromptCreate" type="text">
+          </div>
+          <div class="button-name">
+            <button class="button-in-name" type="submit">生成prompt</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+
+<style>
+.config-form-body{
+  width: auto;
+  display: flex; /* 使用flexbox布局 */
+  flex-direction: column; /* 子元素垂直排列 */
+  align-items: center; /* 子元素在交叉轴上（水平方向）居中 */
+  justify-content: center; /* 子元素在主轴上（垂直方向）居中，如果你也想要垂直居中的话 */
+}
+
+.PromptCreate{
+  width: 86%;
+  max-width: 900px;
+  margin-top: 0; /* 减少上边距 */
+  padding-top: 0; /* 减少上边距 */
+  margin-bottom: 20px; /* 保持下边距不变 */
+  padding: 0 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.config_title_prompt {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: rgb(51, 51, 51);
+    margin: 20px 0;
+    padding: 10px 0;
+    display: inline-block;
+    font-size: 2em;
+    transition: transform 0.3s ease;
+  }
+
+
+  form input[type="text"],
+  form input[type="number"],
+  form select,
+  form button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    box-shadow: 8px 8px 16px #eaeaea, -8px -8px 16px #ffffff; 
+    box-shadow: 8px 8px 16px #eaeaea, -8px -8px 16px #ffffff; 
+    color: rgb(73, 73, 73);
+  }
+
+.button-name {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  .button-name button {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #e0e0e0;
+    border: none;
+    box-shadow: 4px 4px 8px #e8e8e8, -4px -4px 8px #ffffff;
+    color: rgb(255, 255, 255);
+  }
+
+  .button-name button:last-child {
+    margin-right: 0;
+  }
+
+  .button-in-name {
+    padding: 12px 25px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background-image: linear-gradient(to right, #003cff, #4d73ff);
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 
+      0 2px 4px rgba(134, 153, 211, 0.726),
+      inset 2px 6px 2px rgba(255, 255, 255, 0.836), /* 内阴影为按钮添加一些立体感 */
+      inset -2px -6px 2px rgba(0, 0, 0, 0.6); /* 内阴影为按钮添加深度感 */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .button-in-name:hover, .button-in-name:focus {
+    background-image: linear-gradient(to left, #8f94fb, #4e54c8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-color: #8f94fb;
+  }
+
+  .button-in-name:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+
+<script>
+  // import axios from 'axios';
+  
+  export default {
+    data() {
+      return {
+        modelPaths: {
+            PromptCreate: '',
+        }
+      };
+    },
+    methods: {
+      handleSubmit() {
+        const PromptCreatePaths = {
+            PromptCreate: this.PromptCreatePaths(this.modelPaths.PromptCreate),
+        };
+        console.log(PromptCreatePaths.PromptCreate); // 这将在浏览器的控制台中显示组合后的路径
+  
+        // 发送规范化的路径到后端
+        this.submitPaths(PromptCreatePaths);
+      },
+      PromptCreatePaths(path) {
+        // 将路径中的反斜杠转换为正斜杠
+        return path.replace(/\\/g, '/');
+      },
+
+      async submitPaths(paths) {
+        try {
+          // 发送请求到后端 API
+          const response = await fetch('http://localhost:3000/update-prompt-yaml', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(paths)
+          });
+  
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+  
+          // 触发 tool_add_control.py 脚本的执行
+          await fetch('http://localhost:3000/prompt-script', { method: 'POST' });
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    }
+  };
+  </script>
