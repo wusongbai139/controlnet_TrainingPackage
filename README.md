@@ -138,11 +138,11 @@ Python version 3.8 is required.
 ##UI interface
 
 
-! [Training Main Interface] (img/1.jpg)
+![训练主界面](img/1.jpg)
 
-! [Model Preprocessing Interface] (img/2.jpg)
+![模型预处理界面](img/2.jpg)
 
-! [Widget Interface] (img/3.jpg)
+![小工具界面](img/3.jpg)
 
 
 
