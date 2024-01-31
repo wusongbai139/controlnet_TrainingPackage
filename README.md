@@ -92,7 +92,7 @@
 
 * Convenient and practical, scripts or UI interfaces can be launched
 
-* Currently, only training SD1.5's controllnet model is supported
+* Currently, only training SD1.5's controlnet model is supported
 
 
 
@@ -151,7 +151,7 @@ Python version 3.8 is required.
 
 1. Create a training set, prepare original images, conditional images, and target images;
 
-- The controllnet model requires the preparation of raw images, conditional images, and target generated images, all of which are indispensable.
+- The controlnet model requires the preparation of raw images, conditional images, and target generated images, all of which are indispensable.
 
 - The original image refers to the image from which features are extracted, which is the image you put in the Controlnet plugin of the webui;
 
