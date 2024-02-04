@@ -31,7 +31,7 @@
 2. 使用UI界面，需要有npm。
 - “setup.bat”可以一键安装所有依赖。安装完后可以用UI界面训练模型。
 3. 下载模型（必须）
-- 模型下载地址：https://huggingface.co/lllyasviel/ControlNet/tree/main/models
+- 模型下载地址：https://huggingface.co/openai/clip-vit-large-patch14/tree/main
   - 需要下载“pytorch_model.bin”文件
 - 下载完模型后，需要将模型放到根目录的“clip-vit-large-patch14”文件夹下。
 4. 下载训练时的base模型（必须）
@@ -120,7 +120,7 @@ Python version 3.8 is required.
 
 3. Download model (mandatory)
 
-- Model download address: https://huggingface.co/lllyasviel/ControlNet/tree/main/models
+- Model download address: https://huggingface.co/openai/clip-vit-large-patch14/tree/main
 
 - Need to download the "pytorch_model. bin" file
 
