@@ -1,3 +1,5 @@
+本项目不再维护。新的controlnet_train_webUI地址：https://github.com/wusongbai139/controlnet_train_webUI/tree/main
+
 # controlnet_TrainingPackage（controlnet模型训练包）
 
 
